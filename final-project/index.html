@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
+<!--     CSS Formatting-->
+    
     <style>
         body {
             margin: 0;
@@ -55,7 +57,7 @@
             color: #001323;
         }
         
-        /* ADD YOUR ADDITIONAL STYLE RULES HERE */
+        /* Additional Style*/
         
         .legend {
         padding: 6px 8px;
@@ -103,11 +105,13 @@
 </head>
 
 <body>
+<!--    TITLE-->
     <header>
         <h1>Agriculture Exports Troughout the United States:</h1>
         <h2>Including Corn, Soybeans, and Wheat</h2>
     </header>
 <div id='ui-controls'>
+<!--    Adds toggle bar-->
      <label>Choose a data attribute:<br>
         <select name="grains">
             <option value="corn_2013" selected>Corn Exported</option>
@@ -118,9 +122,12 @@
 </div>
     <div id='map'></div>
 
+<!--
+**ATTEMPTED SLIDER**
     <div id="ui-controls">
         <input type="range" min="2000", max="2013", 
                 value="2000", step="1" class="year-slider"></input>
+-->
     </div>
     <footer>
         <p>Map authored by: Vincent Hayes</p>
@@ -130,7 +137,7 @@
 
     <script>
         
-        // WRITE YOUR CODE JAVASCRIPT CODE HERE
+        // JavaScript code 
         //Creates Title
         jQuery("h1").html("Agricultural Exports by State in the Year 2013");
         
@@ -143,24 +150,24 @@
             dragging: false,
             zoomControl: false
         }
-        
+        // adds labels
         var labels = {
             "corn_2013": "% Corn Exported",
             "soybean_2013": "% Soybeans Exported",
             "wheat_2013": "% Wheat Exported"
         }
         
-        //Creats a variable for the map to be used below
+        //Creats a variable for the map to be used
         var map = L.map('map', options);
         
-        //creates a global variable
+        //creates the global variable
         var dataLayer,
             Year= "corn_2013"; 
         
-        //uses json file to draw map lines
+        //uses json file for map lines
         $.getJSON("us-states.json", function(states) {
 
-            //takes our csv data and sends turns it into a form compatiable with json
+            //converts csv data to be compatiable with json data
             Papa.parse('ag.csv', {
                 download: true,
                 header: true,
@@ -169,7 +176,7 @@
                 }
             });
         });
-        
+        // processes the data
         function processData(states, data) {
              
             for(var state in states.features){
@@ -183,8 +190,10 @@
                 }
 
             }
+            // allows you to check the data in the JavaScript Console Log
             console.log(states);
             
+            // styles data layer
             dataLayer = L.geoJson(states, {
                 style: function(feature) {
                     return {
@@ -201,8 +210,8 @@
             updateMap();
             drawInfo();   
                
-    };
-        
+            };
+        //creates getClassBreaks variable
     function updateMap(){
         
         var breaks = getClassBreaks();
@@ -211,13 +220,13 @@
             layer.setStyle({
                 fillColor: getColor(layer.feature.properties[Year], breaks)
             });
-                  
+              // creates mouse over feature to highlight the state the mouse is on    
             layer.on('mouseover', function() {
                 updateInfo(this); 
                 
                 layer.setStyle({color: 'yellow'}).bringToFront();  
             });
-            
+            // unhighlights the state when the mouse is taken off that state
             layer.on('mouseout', function() {
                 layer.setStyle({color: '#6f6868'});
             });
@@ -234,7 +243,7 @@
         
         updateLegend(breaks);
     }
-        
+        // creates getClassBreaks function
     function getClassBreaks(){
         var values=[];
         dataLayer.eachLayer(function(layer){
@@ -244,7 +253,7 @@
         var breaks = ss.quantile(values, [0, 0.2, 0.4, 0.6, 0.8, 1]);
         return breaks;
     }
-        
+        // defines the range of percentages based on darker shades of color
     function getColor(d, breaks) {
 //        console.log(breaks);
         if(d <= breaks[1]) {
@@ -259,7 +268,7 @@
             return 'green';
         }
     }
-     
+     // draws the legend
         function drawLegend() {
 
             var legend = L.control({position: 'topleft'});
@@ -271,10 +280,10 @@
                 return div;
 
         };
-
+    // adds legend to map
         legend.addTo(map);
     }
-            
+     // converts decimals to percentages on the legend
     function updateLegend(breaks) {
 
         var legend = $('.legend').html("<h3>" + labels[Year] + "</h3><ul>"); 
@@ -287,7 +296,7 @@
         }
         legend.append("</ul>");
     }
-        
+     // puts mouseover window in top right of map
         function drawInfo() {
             var info = L.control({position: 'topright'});
             info.onAdd = function(map) {
@@ -297,7 +306,7 @@
         info.addTo(map);
             $(".info").hide();
     }   
-        
+    // shows all percentages for each state when mouse is over them    
        function updateInfo(layer) {
            var props = layer.feature.properties;
            var html = "<h3>"+"State: " +props["name"]+" </h3>"+
@@ -307,7 +316,7 @@
         $(".info").html(html);
            
     } 
-     
+     // positions the 'choose a data attribute' window
         function ui() {
             var dataView = L.control({position: 'topleft'});
 
@@ -326,7 +335,8 @@
                 
             });
     }
-        
+      
+         //** ATTEMPTED SLIDER, COULD NOT GET IT TO WORK**
         
     </script>
     
