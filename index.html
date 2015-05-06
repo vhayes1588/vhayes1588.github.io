@@ -2,20 +2,125 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Geo404/709 Portfolio Example</title>
+<title>Geo409/709 Portfolio</title>
 
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+<link href='http://fonts.googleapis.com/css?family=Imprima' rel='stylesheet' type='text/css'>
 
 <style>
     
-/* CSS style rules go here! */   
+     body {
+        background: #f5f5f5;   
+        font-family: Imprima, monospace;
+     }
+     header { 
+            width: 100%;
+            min-width: 800px;
+            margin: 0 auto;
+            background: #4ec961;
+            padding: 15px 0 20px;
+     }
+     h1 { 
+        font-family: Dosis, monospace;
+        color: #375671; 
+        width: 80%;
+        margin: 0 auto;
+        color: #d3cfcf;
+     }
+     h2 { 
+        font-family: Dosis, monospace;
+        color: #375671;
+        width: 80%;
+        margin: 0 auto;
+        color: #d3cfcf;
+     }
+     h3 {
+        font-family: Dosis, monospace;
+        color: #003d71
+     }
+     p { 
+        font-size: .9em; 
+        color: #375671; 
+     }
+    ul {
+        list-style-type: none; 
+        font-size: .9em; 
+        color: #375671; 
+        line-height: 1.6em;
+     }
+     a, a:visited {   
+        color: #003d71;
+     }   
+     .project {
+        width: 80%;
+        min-width: 800px;
+        height: 100%;
+        margin: 35px auto;
+     }
+     .project:after{
+        content: "";
+        display: table;
+        clear: both; 
+     }
+     .project-image {
+        width: 388px;
+        height: 240px;
+        background: white;
+        float: left;
+        margin-right: 20px;
+        border: 2px solid #dddddd;
+     }     
 
 </style>
+    
 </head>
-
+    
 <body>
+<header>
+    <h1>Geo409 &ndash; 709: Advanced GIS</h1>
+    <h2>Web Mapping at the University of Kentucky</h2>
+</header>
 
-    <p>Hello World! I'm going to be a portfolio page.</p>
+     <section class="project">
+        <image src="images/final_map_rsz.png" alt="final-project" class="project-image" />
+        <h3>Agricultural Exports Throughout the United States</h3>
+        <p>This map shows the exports of corn, wheat, and soybeans throughout the country sorted by state.</p>
+        <ul>
+            <li>See the map:<a href="final-project/final-map-index.index.html" />Agriculture Export Map</a></li>
+            <li>See the code:<a href="https://github.com/vhayes1588/vhayes1588.github.io/blob/master/final-project/index.html" />Github</a></li>
+        <ul>
+    </section>
+    
+    <section class="project">
+        <image src="images/map_1_rsz.png" alt="map-01" class="project-image" />
+        <h3>Beware of the Attack Iguanas</h3>
+        <p>This map displays the radii of the danger zones for Iguanas in Melbourne, AS.</p>
+        <ul>
+            <li>See the map:<a href="map-01/map-1.index.html" />Attack Iguana Map</a></li>
+            <li>See the code:<a href="https://github.com/vhayes1588/geo409/blob/master/map-01/map-1.index.html" />Github</a></li>
+        <ul>
+    </section>
+ 
+    <section class="project">
+        <image src="images/map_2_rsz.png" alt="map-02" class="project-image" />
+        <h3>Power Plants near Lexington</h3>
+        <p>This map shows power plants near Lexington, KY and their respective productions.</p>
+        <ul>
+            <li>See the map:<a href="map-02/map-2.index.html" />Power Plants</a></li>
+            <li>See the code:<a href="https://github.com/vhayes1588/geo409/blob/master/map-02/map-2.index.html" />Github</a></li>
+        <ul>
+    </section>
+ 
+    <section class="project">
+        <image src="images/map_3_rsz.png" alt="map-03" class="project-image" />
+        <h3>Power Plants by Production</h3>
+        <p>This map shows power plants by source throughout the United States. The three sources included in this map are coal, nuclear, and wind.</p>
+        <ul>
+            <li>See the map:<a href="map-03/map-3.index.html" />Power Plants</a></li>
+            <li>See the code:<a href="https://github.com/vhayes1588/geo409/blob/master/map-03/map-3.index.html" />Github</a></li>
+        <ul>
+    </section>
     
 </body>
 </html>
